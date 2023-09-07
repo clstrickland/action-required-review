@@ -18,6 +18,7 @@ async function fetchTeamMembers( team ) {
 
 	const octokit = github.getOctokit( core.getInput( 'token', { required: true } ) );
 	const org = github.context.payload.repository.owner.login;
+	core.info(org);
 
 	let members = [];
 	if ( team.startsWith( '@' ) ) {
@@ -36,6 +37,8 @@ async function fetchTeamMembers( team ) {
 		}
 	} else {
 		try {
+			core.info("*** Team:");
+			core.info(team);
 			for await ( const res of octokit.paginate.iterator( octokit.rest.teams.listMembersInOrg, {
 				org: org,
 				team_slug: team,
