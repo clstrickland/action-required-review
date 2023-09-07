@@ -56,8 +56,9 @@ async function getRequirements() {
  */
 async function main() {
 	try {
-		
-		core.warning(github.context.payload.repository.owner.login);
+		core.warning( `** test **` );
+		core.warning( `${ github.context.payload.repository.owner.login }` );
+		core.warning( `${ github.context.payload.repository.owner.login.name }` );
 		const requirements = await getRequirements();
 		core.startGroup( `Loaded ${ requirements.length } review requirement(s)` );
 
